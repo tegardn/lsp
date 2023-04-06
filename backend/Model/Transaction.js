@@ -6,28 +6,30 @@ const { db, connectSql } = require("../Config/db");
 class TransactionModel {
   constructor(
     id,
-    namaPenerima,
-    alamatTujuan,
-    namaProduk,
-    harga,
+    tanggal_transaksi,
+    nama_penerima,
+    alamat_tujuan,
+    nama_produk,
+    harga_produk,
     gambar,
-    urlGambar,
+    url_gambar,
     status
   ) {
     this.id = id;
-    this.namaPenerima = namaPenerima;
-    this.alamatTujuan = alamatTujuan;
-    this.namaProduk = namaProduk;
-    this.harga = harga;
+    this.tanggal_transaksi = tanggal_transaksi;
+    this.nama_penerima = nama_penerima;
+    this.alamat_tujuan = alamat_tujuan;
+    this.nama_produk = nama_produk;
+    this.harga_produk = harga_produk;
     this.gambar = gambar;
-    this.urlGambar = urlGambar;
+    this.url_gambar = url_gambar;
     this.status = status;
   }
 
   // tampilkan semua transaction
   static async ShowAllTransactionModel() {
     const sqlQuery =
-      "SELECT transaksi.nama_penerima, transaksi.alamat_tujuan, printer.nama_produk, printer.harga_produk, printer.gambar, printer.url_gambar FROM transaksi INNER JOIN printer ON transaksi.id_produk = printer.id_produk INNER JOIN person ON transaksi.id_user = person.id";
+      "SELECT transaksi.id, transaksi.tanggal_transaksi, transaksi.nama_penerima, transaksi.alamat_tujuan, printer.nama_produk, printer.harga_produk, printer.gambar, printer.url_gambar, transaksi.status FROM transaksi INNER JOIN printer ON transaksi.id_produk = printer.id_produk INNER JOIN person ON transaksi.id_user = person.id";
 
     try {
       const response = await connectSql(sqlQuery);
@@ -37,18 +39,46 @@ class TransactionModel {
       response.forEach((i) => {
         data = new TransactionModel(
           i.id,
-          i.namaPenerima,
-          i.alamatTujuan,
-          i.namaProduk,
-          i.harga,
+          i.tanggal_transaksi,
+          i.nama_penerima,
+          i.alamat_tujuan,
+          i.nama_produk,
+          i.harga_produk,
           i.gambar,
           i.url_gambar,
-          i.status
+          i.status,
         );
         datas.push(data);
       });
 
       return datas;
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  // show detail transaction
+  static async ShowTransationByIdModel(id) {
+    const sqlQuery = "SELECT transaksi.id, transaksi.tanggal_transaksi, transaksi.nama_penerima, transaksi.alamat_tujuan, printer.nama_produk, printer.harga_produk, printer.gambar, printer.url_gambar, transaksi.status FROM transaksi INNER JOIN printer ON transaksi.id_produk = printer.id_produk INNER JOIN person ON transaksi.id_user = person.id WHERE transaksi.id = ?";
+  
+    try {
+      const response = await connectSql(sqlQuery, [id]);
+      const data = response[0];
+      let dataById;
+      if (data) {
+        dataById = new TransactionModel(
+          data.id,
+          data.tanggal_transaksi,
+          data.nama_penerima,
+          data.alamat_tujuan,
+          data.nama_produk,
+          data.harga_produk,
+          data.gambar,
+          data.url_gambar,
+          data.status
+        );
+      }
+      return dataById;
     } catch (err) {
       throw new Error(err);
     }

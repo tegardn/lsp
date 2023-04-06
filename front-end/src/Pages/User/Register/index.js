@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
 
 // import component
-import Button from "../../Components/Button";
+import Button from "../../../Components/Button";
 
 // icon
 import { faEnvelope, faUser } from "@fortawesome/free-regular-svg-icons";

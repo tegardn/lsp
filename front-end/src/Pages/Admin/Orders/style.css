@@ -1,0 +1,24 @@
+.orders-table th {
+    font-size: 1.2rem;
+    background-color: #16161a;
+    color: #fffffe;
+}
+
+.orders-table th,
+.orders-table td {
+    padding: 10px 12px;
+    border: 1px solid black;
+}
+
+.orders-table td:nth-of-type(4), .orders-table td:nth-of-type(6) {
+    width: 13%;
+}
+
+.orders-table td:nth-of-type(5),
+.orders-table td:nth-of-type(2),
+.orders-table td:nth-of-type(4),
+.orders-table td:nth-of-type(6),
+.orders-table td:nth-of-type(7),
+.orders-table td:last-of-type {
+    text-align: center;
+}

@@ -1,17 +1,17 @@
 import { React, useState, useEffect } from "react";
 import axios from "axios";
 
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 // import css
 import "./style.css";
-import Button from "../../Components/Button";
 
 export default function ProductDetails() {
   // bahan
   const [detail, setDetail] = useState();
   const token = localStorage.getItem("Authorization");
   const { id } = useParams();
+  const push = useNavigate();
 
   // proses detail produk
   async function showDetail() {
@@ -56,17 +56,13 @@ export default function ProductDetails() {
                   {formatRupiah(detail.harga_produk)}
                 </h3>
               </div>
-              <Button
-                textbtn="Buy"
-                className="btn-buy"
-                event={`/product/transaction/${detail.id_produk}`}
-              />
+              <button className={detail.stok == 0 ? "btn-buy-disabled" : "btn-buy"} disabled={detail.stok == 0} onClick={() => push(`/product/transaction/${detail.id_produk}`)}>Buy</button>
             </div>
           </div>
           <div className="product-detail-desc">
             <h3>Deskripsi :</h3>
             <p>{detail.deskripsi}</p>
-            <p>Stok : {detail.stok}</p>
+            {detail.stok == 0 ? <p>Stok : Habis</p> : <p>Stok : {detail.stok}</p>}
           </div>
         </div>
       )}

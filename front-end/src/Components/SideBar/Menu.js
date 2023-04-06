@@ -16,6 +16,9 @@ export default function Menu() {
       <li>
         <Link to="/products" className='link'>Product</Link>
       </li>  
+      <li>
+        <Link to="/orders" className='link'>Orders</Link>
+      </li>  
     </ul>
   )
 }

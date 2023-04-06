@@ -11,10 +11,10 @@ const {
 // endpoint router
 
 // menampilkan data
-transactionRouter.get(
-  "/transaction",
-  TransactionController.ShowAllTransactionsController
-);
+transactionRouter.get("/transaction", TransactionController.ShowAllTransactionsController);
+
+// detail transaksi
+transactionRouter.get("/transaction/:id", TransactionController.ShowTransationByIdController);
 
 // membuat pesanan
 transactionRouter.put("/transaction/:id", TransactionController.UpdateStatusTransactionController)

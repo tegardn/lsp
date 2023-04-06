@@ -15,12 +15,6 @@
     flex-direction: row;
 }
 
-table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 30px 0;
-}
-
 .add-product {
     border: 1px solid black;
     border-radius: 50%;

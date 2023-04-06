@@ -49,6 +49,19 @@
     cursor: pointer;
 }
 
+.btn-buy-disabled {
+    font-size: 1.5rem;
+    background-color: #242629;
+    padding: 10px 25px;
+    border: none;
+    width: 20%;
+    align-self: center;
+    border-radius: 10px;
+    color: #94a1b2;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
 .product-detail-desc p:first-of-type {
     padding-bottom: 10px;
 }

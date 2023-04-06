@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 // import component
-import Button from "../../Components/Button";
+import Button from "../../../Components/Button";
 
 // import css
 import "./style.css";
@@ -46,8 +46,7 @@ export default function Transaction() {
           },
         }
       );
-      console.log(res);
-      // push(`/product/transaction/${id}/success`);
+      push(`/product/transaction/success`);
     } catch (err) {
       console.error(err);
     }
