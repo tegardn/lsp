@@ -1,0 +1,23 @@
+.card-product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 8px;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.card-product img {
+    width: 200px;
+    height: 200px;
+}
+
+.container-title-product {
+    text-align: center;
+    padding: 10px;
+}
+
+.container-title-product h3 {
+    padding-bottom: 2px;
+}

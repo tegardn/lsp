@@ -20,7 +20,6 @@
 }
 
 .menu {
-    list-style: none;
     color: #fffffe;
     display: flex;
     flex-direction: column;

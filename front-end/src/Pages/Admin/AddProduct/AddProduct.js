@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 // import component
-import Button from "../../Components/Button";
+import Button from "../../../Components/Button";
 
 // import css
 import "./style.css";

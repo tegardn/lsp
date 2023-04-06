@@ -28,6 +28,9 @@ printerRouter.post('/product/add', auth ,PrinterController.AddProductController)
 printerRouter.patch('/product/update/:id', auth ,PrinterController.UpdateProductController)
 
 //hapus produk
-printerRouter.delete('/product/del/:id', auth ,PrinterController.DeleteProductController);
+printerRouter.delete('/product/del/:id', auth, PrinterController.DeleteProductController);
+
+// transaction
+printerRouter.post('/transaksi/:id', auth, PrinterController.TransactionController)
 
 module.exports = { printerRouter };

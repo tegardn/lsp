@@ -29,3 +29,7 @@ input {
   width: 100%;
   color: #16161a;
 }
+
+ul {
+  list-style-type: none;
+}

@@ -20,4 +20,40 @@ header img {
     align-items: flex-end;
     justify-content: center;
     overflow: hidden;
+    position: relative;
 }
+
+.m-content {
+    position: absolute;
+    top: 20%;
+    left: 88%;
+    color: black;
+    box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.3);
+    width: 130px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.m-p-name h2 {
+    font-size: 1.7rem;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.m-p-name {
+    border-bottom: 1px solid #7f5af0;
+    width: 100%;
+}
+
+.m-content ul li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5px;
+    cursor: pointer;
+}
+

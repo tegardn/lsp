@@ -1,21 +1,14 @@
-.update-title {
+.order-titles {
     text-align: center;
+    font-size: 3rem;
 }
 
-.update-container {
+.order-container {
     width: 60%;
     margin: 50px auto;
 }
 
-input {
-    border: none;
-    outline: none;
-    font-size: 0.8rem;
-    width: 100%;
-    color: #16161a;
-}
-
-.input-update {
+.input-add {
     border: 1px solid #010101;
     padding: 10px 12px;
     display: flex;
@@ -26,21 +19,24 @@ input {
     column-gap: 8px;
 }
 
-.gambar-product-update .input-update {
-    border: none;
-    padding: 10px 0;
+.total-payment {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    padding: 30px 0;
 }
 
-.btn-update {
+.btn-order {
     text-align: center;
     font-size: 1.1rem;
     background-color: #7f5af0;
+    padding: 10px;
     border: none;
     width: 100%;
-    padding: 10px;
     border-radius: 10px;
     color: #fffffe;
     margin-bottom: 6px;
     font-weight: 500;
+    cursor: pointer;
 }
 

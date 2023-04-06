@@ -143,6 +143,7 @@ class Printer {
     }
   }
 
+  // search product
   static async SearchProductModel(query) {
     const sqlQuery = `SELECT * FROM printer WHERE nama_produk LIKE '%${query}%'`;
 
@@ -156,6 +157,26 @@ class Printer {
       throw new Error(err);
     }
   }
+
+  // transaction
+  static async TransactionModel(userId, id_produk, namaPenerima, alamatTujuan, total) {
+    // querySql
+    const addQuery = "INSERT INTO transaksi(id_user, nama_penerima, alamat_tujuan, id_produk, jumlah_produk, total_harga) VALUES(?, ?, ?, ?, 1, ?)";
+
+    const editQuery = "UPDATE printer SET stok = stok - 1 WHERE id_produk = ?";
+    
+    try {
+      const responseTransaction = await connectSql(addQuery, [userId, namaPenerima, alamatTujuan, id_produk, total])
+      const responseEditStok = await connectSql(editQuery, [id_produk]);
+
+      if (responseTransaction && responseEditStok) {
+        return 'transaksi berhasil'; 
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  
 }
 
 module.exports = { Printer };

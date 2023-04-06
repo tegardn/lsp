@@ -8,18 +8,12 @@ import Button from "../../Components/Button";
 
 // icon
 import { faEnvelope, faUser } from "@fortawesome/free-regular-svg-icons";
-import {
-  faEye,
-  faEyeSlash,
-  faLocationDot,
-  faLock,
-  faPhone,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash, faLocationDot, faLock, faPhone } from "@fortawesome/free-solid-svg-icons";
 
 // import css
 import "./style.css";
 
-export default function RegisterAdmin() {
+export default function Register() {
   // bahan
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -40,12 +34,11 @@ export default function RegisterAdmin() {
         password: password,
         no_hp: telp,
         alamat: alamat,
-        role: "admin",
+        role: "user",
       });
 
       console.log(res);
-      push('/login');
-
+      push("/login");
     } catch (err) {
       console.log(err);
     }
@@ -62,7 +55,7 @@ export default function RegisterAdmin() {
         {/* register title */}
         <h2 className="register-title">register</h2>
         {/* form */}
-        <form className= "" onSubmit={handleRegister}>
+        <form className="" onSubmit={handleRegister}>
           {/* group 1 */}
           <div className="container-name-telp-register">
             {/* username */}
@@ -112,18 +105,22 @@ export default function RegisterAdmin() {
             </div>
             {/* password */}
             <div className="password-register">
-                <FontAwesomeIcon
-                  icon={faLock}
-                  style={{ color: "#7f5af0", fontSize: "1.5rem" }}
-                />
-                <input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              <FontAwesomeIcon onClick={showPass} icon={showPassword ? faEyeSlash : faEye} style={{color: "#7f5af0", fontSize: "1.2rem"}} />
+              <FontAwesomeIcon
+                icon={faLock}
+                style={{ color: "#7f5af0", fontSize: "1.5rem" }}
+              />
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <FontAwesomeIcon
+                onClick={showPass}
+                icon={showPassword ? faEyeSlash : faEye}
+                style={{ color: "#7f5af0", fontSize: "1.2rem" }}
+              />
             </div>
           </div>
           {/* alamat */}
