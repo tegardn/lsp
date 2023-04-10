@@ -32,6 +32,20 @@ class TransactionController {
     }
   }
 
+  // show all transaction by progress
+  static async ShowTransactionByProgressController(req, res) {
+    try {
+      const result = await TransactionModel.ShowAllTransactionProgressModel('progress');
+
+      if (result) {
+        res.status(200).json({ message: result });
+      }
+
+    } catch (err) {
+      res.status(500).json({ message: err });
+    }
+  }
+
   // update status
   static async UpdateStatusTransactionController(req, res) {
     const { id } = req.params;

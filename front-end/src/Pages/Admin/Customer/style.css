@@ -1,14 +1,3 @@
-.search-user {
-    border: 1px solid black;
-    padding: 10px;
-    width: 30%;
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-}
-
 .user-table th {
     font-size: 1.2rem;
     background-color: #16161a;

@@ -4,7 +4,15 @@
 const { db, connectSql } = require("../Config/db");
 
 class Printer {
-  constructor(id_produk, nama_produk, harga_produk, stok, deskripsi, gambar, url_gambar) {
+  constructor(
+    id_produk,
+    nama_produk,
+    harga_produk,
+    stok,
+    deskripsi,
+    gambar,
+    url_gambar
+  ) {
     this.id_produk = id_produk;
     this.nama_produk = nama_produk;
     this.harga_produk = harga_produk;
@@ -66,6 +74,60 @@ class Printer {
     }
   }
 
+  // show porudct asc
+  static async ShowProductASCModel() {
+    const sqlQuery = "SELECT * FROM printer ORDER BY nama_produk ASC";
+    try {
+      const response = await connectSql(sqlQuery);
+      let datas = [];
+      let data;
+
+      response.forEach((i) => {
+        data = new Printer(
+          i.id_produk,
+          i.nama_produk,
+          i.harga_produk,
+          i.stok,
+          i.deskripsi,
+          i.gambar,
+          i.url_gambar
+        );
+        datas.push(data);
+      });
+
+      return datas;
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  // show product desc
+  static async ShowProductDESCModel() {
+    const sqlQuery = "SELECT * FROM printer ORDER BY nama_produk DESC";
+    try {
+      const response = await connectSql(sqlQuery);
+      let datas = [];
+      let data;
+
+      response.forEach((i) => {
+        data = new Printer(
+          i.id_produk,
+          i.nama_produk,
+          i.harga_produk,
+          i.stok,
+          i.deskripsi,
+          i.gambar,
+          i.url_gambar
+        );
+        datas.push(data);
+      });
+
+      return datas;
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
   // add product
   static async AddProductModel(
     nama_produk,
@@ -85,7 +147,7 @@ class Printer {
         stok,
         deskripsi,
         gambar,
-        url_gambar
+        url_gambar,
       ]);
 
       if (createProduct) {
@@ -104,7 +166,7 @@ class Printer {
     deskripsi,
     gambar,
     url_gambar,
-    id_produk,
+    id_produk
   ) {
     const querySql =
       "UPDATE printer SET nama_produk = ?, harga_produk = ?, stok = ?, deskripsi = ?, gambar = ?, url_gambar = ? WHERE id_produk = ?";
@@ -159,24 +221,36 @@ class Printer {
   }
 
   // transaction
-  static async TransactionModel(userId, id_produk, namaPenerima, alamatTujuan, total) {
+  static async TransactionModel(
+    userId,
+    id_produk,
+    namaPenerima,
+    alamatTujuan,
+    total
+  ) {
     // querySql
-    const addQuery = "INSERT INTO transaksi(id_user, nama_penerima, alamat_tujuan, id_produk, jumlah_produk, total_harga) VALUES(?, ?, ?, ?, 1, ?)";
+    const addQuery =
+      "INSERT INTO transaksi(id_user, nama_penerima, alamat_tujuan, id_produk, jumlah_produk, total_harga) VALUES(?, ?, ?, ?, 1, ?)";
 
     const editQuery = "UPDATE printer SET stok = stok - 1 WHERE id_produk = ?";
-    
+
     try {
-      const responseTransaction = await connectSql(addQuery, [userId, namaPenerima, alamatTujuan, id_produk, total])
+      const responseTransaction = await connectSql(addQuery, [
+        userId,
+        namaPenerima,
+        alamatTujuan,
+        id_produk,
+        total,
+      ]);
       const responseEditStok = await connectSql(editQuery, [id_produk]);
 
       if (responseTransaction && responseEditStok) {
-        return 'transaksi berhasil'; 
+        return "transaksi berhasil";
       }
     } catch (err) {
       console.log(err);
     }
   }
-  
 }
 
 module.exports = { Printer };

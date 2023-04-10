@@ -16,13 +16,19 @@ const { auth } = require('../Middleware/Auth');
 printerRouter.get('/products', auth ,PrinterController.GetProductsController);
 
 // menampilkan produk berdasarkan id
-printerRouter.get('/product/:id', auth ,PrinterController.ShowProductByIdController);
+printerRouter.get('/product/:id', auth, PrinterController.ShowProductByIdController);
+
+// menampilkan product asc
+printerRouter.get('/productasc', auth, PrinterController.ShowProductASCController);
+
+// memanpilkan product desc
+printerRouter.get('/productdesc', auth,PrinterController.ShowProductDESCController);
 
 // search produk
-printerRouter.get('/search', PrinterController.SearchProductController)
+printerRouter.get('/search', auth, PrinterController.SearchProductController)
 
 // menambahkan produk
-printerRouter.post('/product/add', auth ,PrinterController.AddProductController)
+printerRouter.post('/product/add', auth,PrinterController.AddProductController)
 
 // update produk
 printerRouter.patch('/product/update/:id', auth ,PrinterController.UpdateProductController)

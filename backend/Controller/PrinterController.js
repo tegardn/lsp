@@ -5,7 +5,6 @@ const { Printer } = require("../Model/Printer");
 
 // init other module
 const fs = require("fs");
-const { constants } = require("os");
 const path = require("path");
 
 class PrinterController {
@@ -26,6 +25,30 @@ class PrinterController {
     const { id } = req.params;
     try {
       const result = await Printer.GetProductsByIdModel(+id);
+      if (result) {
+        res.status(200).json({ message: result });
+      }
+    } catch (err) {
+      res.status(500).json({ message: err });
+    }
+  }
+
+  // show product by asc
+  static async ShowProductASCController(req, res) {
+    try {
+      const result = await Printer.ShowProductASCModel();
+      if (result) {
+        res.status(200).json({ message: result });
+      }
+    } catch (err) {
+      res.status(500).json({ message: err });
+    }
+  }
+
+  // show product by asc
+  static async ShowProductDESCController(req, res) {
+    try {
+      const result = await Printer.ShowProductDESCModel();
       if (result) {
         res.status(200).json({ message: result });
       }
@@ -70,9 +93,7 @@ class PrinterController {
     if (!product) return res.status(404).json({ msg: "Data Tidak ditemukan" });
 
     let fileName = "";
-    if (req.files === null) {
-      fileName = Printer.gambar;
-    } else {
+    if (req.files !== null) {
       const gambar = req.files.gambar;
       const ext = path.extname(gambar.name);
       fileName = gambar.md5 + ext;
@@ -84,7 +105,10 @@ class PrinterController {
       gambar.mv(`./uploads/${fileName}`, (err) => {
         if (err) return res.status(500).json({ msg: err.message });
       });
+    } else {
+      fileName = product.gambar;
     }
+
     const { nama_produk, harga_produk, stok, deskripsi } = req.body;
     const url = `${req.protocol}://${req.get("host")}/uploads/${fileName}`;
 
@@ -147,7 +171,7 @@ class PrinterController {
     if (productData == null) {
       console.log("product habis");
     }
-    
+
     const { userId } = req;
     const { nama_penerima, alamat_tujuan } = req.body;
     const harga = productData.harga_produk;

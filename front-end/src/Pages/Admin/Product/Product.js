@@ -3,12 +3,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+// import component
+import Search from "../../../Components/Seacrh";
+
+// import helper
+import { ConvertRupiah } from "../../../Helper/ConvertRupiah";
+
 // import css
 import "./style.css";
 
 // import fontawesome
 import {
-  faMagnifyingGlass,
   faPen,
   faPlus,
   faTrash,
@@ -52,7 +57,11 @@ export default function Product() {
   //search product result 
   async function searchProductResult(value) {
     try {
-      const res = await axios.get(`http://localhost:5000/search?nama_produk=${value}`);
+      const res = await axios.get(`http://localhost:5000/search?nama_produk=${value}`,{
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       setDatas(res.data.message);
     } catch (err) {
       console.log(err);
@@ -69,22 +78,9 @@ export default function Product() {
   }, [searchP])
 
   return (
-    <div className="product wrapper">
+    <div className="product">
       <div className="container">
-        <div className="search-product">
-          <input
-            type="text"
-            placeholder="search"
-            value={searchP}
-            onChange={e => setSearchP(e.target.value)}
-            onKeyDown={e => e.key === 'Enter' ? searchProductResult(searchP) : null}
-          />
-          <FontAwesomeIcon
-            onClick={() => searchProductResult(searchP)}
-            icon={faMagnifyingGlass}
-            style={{ color: "#7f5af0", cursor: 'pointer' }}
-          />
-        </div>
+        <Search resultSearch={searchP} inputSearch={e => setSearchP(e.target.value)} formulaResult={searchProductResult(searchP)} />
         <div className="add-product">
           <Link to="/products/add">
             <FontAwesomeIcon
@@ -111,7 +107,7 @@ export default function Product() {
                 <img src={data.url_gambar} alt={data.gambar} />
               </td>
               <td>{data.deskripsi}</td>
-              <td>{data.harga_produk}</td>
+              <td>{ConvertRupiah(data.harga_produk)}</td>
               <td>{data.stok}</td>
               <td>
                 <Link to={`/products/edit/${data.id_produk}`}>

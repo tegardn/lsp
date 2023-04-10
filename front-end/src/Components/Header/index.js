@@ -62,7 +62,7 @@ export default function Header() {
       {showModal ? (
         <div className="m-content">
           <div className="m-p-name">
-                      <h2>{user}</h2>
+            <h2>{user}</h2>
           </div>
           <ul>
             <li onClick={logOut}>

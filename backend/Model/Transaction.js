@@ -46,7 +46,7 @@ class TransactionModel {
           i.harga_produk,
           i.gambar,
           i.url_gambar,
-          i.status,
+          i.status
         );
         datas.push(data);
       });
@@ -59,8 +59,9 @@ class TransactionModel {
 
   // show detail transaction
   static async ShowTransationByIdModel(id) {
-    const sqlQuery = "SELECT transaksi.id, transaksi.tanggal_transaksi, transaksi.nama_penerima, transaksi.alamat_tujuan, printer.nama_produk, printer.harga_produk, printer.gambar, printer.url_gambar, transaksi.status FROM transaksi INNER JOIN printer ON transaksi.id_produk = printer.id_produk INNER JOIN person ON transaksi.id_user = person.id WHERE transaksi.id = ?";
-  
+    const sqlQuery =
+      "SELECT transaksi.id, transaksi.tanggal_transaksi, transaksi.nama_penerima, transaksi.alamat_tujuan, printer.nama_produk, printer.harga_produk, printer.gambar, printer.url_gambar, transaksi.status FROM transaksi INNER JOIN printer ON transaksi.id_produk = printer.id_produk INNER JOIN person ON transaksi.id_user = person.id WHERE transaksi.id = ?";
+
     try {
       const response = await connectSql(sqlQuery, [id]);
       const data = response[0];
@@ -96,6 +97,39 @@ class TransactionModel {
       }
     } catch (err) {
       console.log(err);
+    }
+  }
+
+  // tampilkan transaction berdasarkan status
+  static async ShowAllTransactionProgressModel(status) {
+    const sqlQuery =
+      "SELECT transaksi.id, transaksi.tanggal_transaksi, transaksi.nama_penerima, transaksi.alamat_tujuan, printer.nama_produk, printer.harga_produk, printer.gambar, printer.url_gambar, transaksi.status FROM transaksi INNER JOIN printer ON transaksi.id_produk = printer.id_produk INNER JOIN person ON transaksi.id_user = person.id WHERE transaksi.status = ?";
+    
+    console.log(sqlQuery);
+
+    try {
+      const response = await connectSql(sqlQuery, [status]);
+      let datas = [];
+      let data;
+
+      response.forEach((i) => {
+        data = new TransactionModel(
+          i.id,
+          i.tanggal_transaksi,
+          i.nama_penerima,
+          i.alamat_tujuan,
+          i.nama_produk,
+          i.harga_produk,
+          i.gambar,
+          i.url_gambar,
+          i.status
+        );
+        datas.push(data);
+      });
+
+      return datas;
+    } catch (err) {
+      throw new Error(err);
     }
   }
 }

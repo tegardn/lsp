@@ -1,12 +1,11 @@
 import { React, useState, useEffect } from "react";
 import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // import css
 import "./style.css";
 
-// import fontawesome
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+// import css
+import Search from "../../../Components/Seacrh";
 
 export default function Customer() {
   // bahan
@@ -49,22 +48,8 @@ export default function Customer() {
   }, [searchC]);
 
   return (
-    <div className="user wrapper">
-      <div className="search-user">
-        <input
-          type="text"
-          placeholder="search"
-          value={searchC}
-          onChange={(e) => setSearchC(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" ? searchCustomerResult(searchC) : null
-          }
-        />
-        <FontAwesomeIcon
-          onClick={() => searchCustomerResult(searchC)}
-          icon={faMagnifyingGlass}
-          style={{ color: "#7f5af0", cursor: "pointer" }}
-        />
-      </div>
+    <div className="user">
+      <Search resultSearch={searchC} inputSearch={e => setSearchC(e.target.value)} formulaResult={searchCustomerResult(searchC)} />
       <div className="user-table">
         <table>
           <tr>

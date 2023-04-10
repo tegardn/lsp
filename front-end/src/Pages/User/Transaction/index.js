@@ -5,6 +5,9 @@ import axios from "axios";
 // import component
 import Button from "../../../Components/Button";
 
+// import helper
+import { ConvertRupiah } from "../../../Helper/ConvertRupiah";
+
 // import css
 import "./style.css";
 
@@ -32,7 +35,8 @@ export default function Transaction() {
   }
 
   // proses payment
-  async function payment() {
+  async function payment(e) {
+    e.preventDefault();
     try {
       const res = await axios.post(
         `http://localhost:5000/transaksi/${id}`,
@@ -50,13 +54,6 @@ export default function Transaction() {
     } catch (err) {
       console.error(err);
     }
-  }
-
-  function formatRupiah(angka) {
-    let convert = angka.toString().split("").reverse().join("");
-    let rp = convert.match(/\d{1,3}/g);
-    rp = rp.join(".").split("").reverse().join("");
-    return `Rp ${rp}`;
   }
 
   useEffect(() => {
@@ -92,7 +89,7 @@ export default function Transaction() {
         {price && (
           <div className="total-payment">
             <h3>Total :</h3>
-            <h3>{formatRupiah(price.harga_produk)}</h3>
+            <h3>{ConvertRupiah(price.harga_produk)}</h3>
           </div>
         )}
         <Button className="btn-order" textbtn="Send" accept="submit" />
