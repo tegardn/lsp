@@ -173,8 +173,8 @@ class PrinterController {
     }
 
     const { userId } = req;
-    const { nama_penerima, alamat_tujuan } = req.body;
-    const harga = productData.harga_produk;
+    const { nama_penerima, alamat_tujuan, total_product } = req.body;
+    const harga = productData.harga_produk * total_product;
     const stock = productData.stok;
     try {
       if (stock >= 1) {
@@ -184,6 +184,7 @@ class PrinterController {
           +id,
           nama_penerima,
           alamat_tujuan,
+          total_product,
           totalHarga
         );
 

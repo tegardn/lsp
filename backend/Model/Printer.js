@@ -226,13 +226,14 @@ class Printer {
     id_produk,
     namaPenerima,
     alamatTujuan,
-    total
+    total_produk,
+    total_harga
   ) {
     // querySql
     const addQuery =
-      "INSERT INTO transaksi(id_user, nama_penerima, alamat_tujuan, id_produk, jumlah_produk, total_harga) VALUES(?, ?, ?, ?, 1, ?)";
+      "INSERT INTO transaksi(id_user, nama_penerima, alamat_tujuan, id_produk, jumlah_produk, total_harga) VALUES(?, ?, ?, ?, ?, ?)";
 
-    const editQuery = "UPDATE printer SET stok = stok - 1 WHERE id_produk = ?";
+    const editQuery = "UPDATE printer SET stok = stok - ? WHERE id_produk = ?";
 
     try {
       const responseTransaction = await connectSql(addQuery, [
@@ -240,9 +241,10 @@ class Printer {
         namaPenerima,
         alamatTujuan,
         id_produk,
-        total,
+        total_produk,
+        total_harga
       ]);
-      const responseEditStok = await connectSql(editQuery, [id_produk]);
+      const responseEditStok = await connectSql(editQuery, [ total_produk, id_produk]);
 
       if (responseTransaction && responseEditStok) {
         return "transaksi berhasil";
