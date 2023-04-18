@@ -22,7 +22,7 @@ export default function Header() {
     // proses tampil user
     async function getProfile() {
         try {
-            const res = await axios.get("http://localhost:5000/profile", {
+            const res = await axios.get("http://localhost:8000/profile", {
               headers: {
                 "Authorization" : `Bearer ${token}`
               }

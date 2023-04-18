@@ -28,7 +28,7 @@ export default function Product() {
   // proses get data
   async function getDataProduct() {
     try {
-      const res = await axios.get("http://localhost:5000/products", {
+      const res = await axios.get("http://localhost:8000/products", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -42,7 +42,7 @@ export default function Product() {
   // delete data
   async function deleteProduct(id) {
     try {
-      await axios.delete(`http://localhost:5000/product/del/${id}`, {
+      await axios.delete(`http://localhost:8000/product/del/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -57,7 +57,7 @@ export default function Product() {
   //search product result 
   async function searchProductResult(value) {
     try {
-      const res = await axios.get(`http://localhost:5000/search?nama_produk=${value}`,{
+      const res = await axios.get(`http://localhost:8000/search?nama_produk=${value}`,{
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -85,7 +85,7 @@ export default function Product() {
           <Link to="/products/add">
             <FontAwesomeIcon
               icon={faPlus}
-              style={{ color: "#7f5af0", fontSize: "24px" }}
+              style={{ color: "#fff", fontSize: "24px" }}
             />
           </Link>
         </div>
@@ -116,7 +116,7 @@ export default function Product() {
                     style={{
                       marginRight: "12px",
                       fontSize: "18px",
-                      color: "#7f5af0",
+                      color: "orange",
                     }}
                   />
                 </Link>
@@ -125,7 +125,7 @@ export default function Product() {
                   icon={faTrash}
                   style={{
                     fontSize: "18px",
-                    color: "#7f5af0",
+                    color: "red",
                     cursor: "pointer",
                   }}
                 />

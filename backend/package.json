@@ -8,7 +8,7 @@
     "start": "nodemon app.js"
   },
   "keywords": [],
-  "author": "max",
+  "author": "Tegar",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",

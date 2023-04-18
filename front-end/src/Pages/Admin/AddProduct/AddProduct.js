@@ -30,7 +30,7 @@ export default function AddProduct() {
     e.preventDefault();
 
     try {
-      const res = await axios.post('http://localhost:5000/product/add', {
+      const res = await axios.post('http://localhost:8000/product/add', {
         nama_produk: name,
         harga_produk: price,
         stok: stock,

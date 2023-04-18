@@ -13,7 +13,7 @@ export default function Overview() {
   // proses angka product
   async function productTotal() {
     try {
-      const res = await axios.get('http://localhost:5000/products', {
+      const res = await axios.get('http://localhost:8000/products', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -31,7 +31,7 @@ export default function Overview() {
   // proses angka customer
   async function customerTotal() {
     try {
-      const res = await axios.get('http://localhost:5000/users', {
+      const res = await axios.get('http://localhost:8000/users', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -39,6 +39,7 @@ export default function Overview() {
 
       // bahan convert angka
       let dataConvert = res.data.message;
+      console.log(res);
       setCAmount(dataConvert.length);
       
     } catch (err) {
@@ -49,7 +50,7 @@ export default function Overview() {
   // proses angka order
   async function OrderTotal() {
     try {
-      const res = await axios.get("http://localhost:5000/transaction", {
+      const res = await axios.get("http://localhost:8000/transaction", {
         headers: {
           Authorization: `Bearer ${token}`
         }

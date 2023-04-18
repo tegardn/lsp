@@ -15,7 +15,7 @@ export default function OrdersChangeStatus() {
   // proses tampil detail
   async function showOrderDetail() {
     try {
-      const res = await axios.get(`http://localhost:5000/transaction/${id}`, {
+      const res = await axios.get(`http://localhost:8000/transaction/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

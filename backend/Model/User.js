@@ -15,20 +15,20 @@ class User {
     this.no_hp = no_hp;
     this.alamat = alamat;
     this.role = role;
-    this.create_at = create_at;
-    this.update_at = update_at;
+    this.created_at = created_at;
+    this.updated_at = updated_at;
   }
 
   // registermodel
-  static async RegisterModel(nama, email, password, no_hp, alamat, role, create_at, update_at) {
+  static async RegisterModel(nama, email, password, no_hp, alamat, role, created_at, updated_at) {
     //query sql
-    const sqlQuery = "INSERT INTO person (nama, email, password, no_hp, alamat, role, create_at, update_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    const sqlQuery = "INSERT INTO person (nama, email, password, no_hp, alamat, role, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     try {
       const hasher = await hashPass(password);
 
       // Execute an SQL query to insert the user into the database
-      const user = await connectSql(sqlQuery, [nama, email, hasher, no_hp, alamat, role, create_at, update_at]);
+      const user = await connectSql(sqlQuery, [nama, email, hasher, no_hp, alamat, role, created_at, updated_at]);
 
       if (user) {
         return 'user created';

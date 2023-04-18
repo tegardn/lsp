@@ -1,3 +1,7 @@
+body {
+    background-color: #21212F;
+}
+
 .card-overview.wrapper {
     display: flex;
     justify-content: space-between;

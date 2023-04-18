@@ -16,7 +16,7 @@ export default function Customer() {
   // proses ambil data user
   async function getDataCustomers() {
     try {
-      const res = await axios.get("http://localhost:5000/users", {
+      const res = await axios.get("http://localhost:8000/users", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -31,7 +31,7 @@ export default function Customer() {
   async function searchCustomerResult(value) {
     try {
       const res = await axios.get(
-        `http://localhost:5000/search-user?nama_user=${value}`
+        `http://localhost:8000/search-user?nama_user=${value}`
       );
       setCDatas(res.data.message);
     } catch (err) {

@@ -23,7 +23,7 @@ export default function Orders() {
   // proses get order
   async function getOrder() {
     try {
-      const res = await axios.get("http://localhost:5000/transaction", {
+      const res = await axios.get("http://localhost:8000/transaction", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

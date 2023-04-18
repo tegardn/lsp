@@ -12,12 +12,13 @@ export default function Profile() {
 
   async function showProfile() {
     try {
-      const res = await axios.get("http://localhost:5000/profile", {
+      const res = await axios.get("http://localhost:8000/profile", {
         headers: {
           "Authorization" : `Bearer ${token}`
         }
       })
-      setUser(res.data.message.nama)
+      console.log(res.data.message.username)
+      setUser(res.data.message.username)
     } catch (err) {
       console.log(err);
     }
@@ -33,7 +34,7 @@ export default function Profile() {
       <div className="p-image">
         <FontAwesomeIcon
           icon={faUser}
-          style={{ color: "#7f5af0", fontSize: "30px" }}
+          style={{ color: "#fff", fontSize: "30px" }}
         />
       </div>
     </div>

@@ -22,7 +22,7 @@ export default function UpdateProduct() {
   // getProductUpdate
   async function getProductUpdate() {
     try {
-      const res = await axios.get(`http://localhost:5000/product/${id}`, {
+      const res = await axios.get(`http://localhost:8000/product/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -51,7 +51,7 @@ export default function UpdateProduct() {
       e.preventDefault();
   
       try {
-        const res = await axios.patch(`http://localhost:5000/product/update/${id}`, {
+        const res = await axios.patch(`http://localhost:8000/product/update/${id}`, {
           nama_produk: name,
           harga_produk: price,
           stok: stock,

@@ -21,7 +21,7 @@ export default function Search({resultSearch, inputSearch ,formulaResult}) {
       />
       <FontAwesomeIcon
         icon={faMagnifyingGlass}
-        style={{ color: "#7f5af0", cursor: "pointer" }}
+        style={{ color: "#fff", cursor: "pointer" }}
       />
     </div>
   );

@@ -25,7 +25,9 @@ userRouter.post("/check", userController.CheckUser);
 userRouter.get('/users', auth, userController.ShowUsersController)
 
 // show profiles
-userRouter.get('/profile', auth, userController.ShowProfileController);
+userRouter.get('/profile', (req,res) => {
+    console.log(req.user);
+});
 
 // search
 userRouter.get('/search-user', userController.SearchUsersController )
